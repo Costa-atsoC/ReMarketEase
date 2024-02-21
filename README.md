@@ -18,6 +18,6 @@ This starts your app in development mode, rebuilding assets on file changes.
 <br />
 <div align="center">
   <a href="https://github.com/rdsilva01/proj-ReMarketEase/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=rdsilva01/proj-ReMarketEase" width=30%/>
+    <img src="https://contrib.rocks/image?repo=Costa-atsoC/ReMarketEase" width=30%/>
   </a>
 </div>

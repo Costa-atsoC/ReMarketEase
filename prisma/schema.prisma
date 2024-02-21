@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    Int           @id @default(autoincrement())
+  createdAt String
+  updatedAt String
+  name      String
+  password  String
+  email     String        @unique
+  cart      ProductCart[]
+}
+
+model ProductCart {
+  prodCartId Int     @id @default(autoincrement())
+  quantity   Int
+  Product    Product @relation(fields: [prodId], references: [prodId])
+  prodId     Int
+  User       User    @relation(fields: [userId], references: [userId])
+  userId     Int
+}
+
+model Product {
+  prodId      Int           @id @default(autoincrement())
+  name        String
+  price       Float
+  description String        @default("Ups, nothing here!")
+  photo       String        @default("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.independentmediators.co.uk%2Fwp-content%2Fuploads%2F2016%2F02%2Fplaceholder-image.jpg&f=1&nofb=1&ipt=613650d4780638abb197c76bf2919e306e1cfd5607088f1250b798074bd5b1b4&ipo=images")
+  categories  Category[]
+  brand       Brand         @relation(fields: [brandId], references: [brandId])
+  brandId     Int
+  ProductCart ProductCart[]
+}
+
+model Brand {
+  brandId  Int       @id @default(autoincrement())
+  name     String    @default("No brand")
+  photo    String    @default("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.independentmediators.co.uk%2Fwp-content%2Fuploads%2F2016%2F02%2Fplaceholder-image.jpg&f=1&nofb=1&ipt=613650d4780638abb197c76bf2919e306e1cfd5607088f1250b798074bd5b1b4&ipo=images")
+  products Product[]
+}
+
+model Category {
+  catId    Int       @id @default(autoincrement())
+  name     String    @unique
+  photo    String    @default("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.independentmediators.co.uk%2Fwp-content%2Fuploads%2F2016%2F02%2Fplaceholder-image.jpg&f=1&nofb=1&ipt=613650d4780638abb197c76bf2919e306e1cfd5607088f1250b798074bd5b1b4&ipo=images")
+  products Product[]
+}

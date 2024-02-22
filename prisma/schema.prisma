@@ -11,13 +11,22 @@ datasource db {
 }
 
 model User {
-  userId    Int           @id @default(autoincrement())
-  createdAt String
-  updatedAt String
-  name      String
-  password  String
-  email     String        @unique
-  cart      ProductCart[]
+  userId      Int           @id @default(autoincrement())
+  createdAt   String
+  updatedAt   String
+  name        String
+  password    String
+  email       String        @unique
+  cart        ProductCart[]
+  UserProduct UserProduct[]
+}
+
+model UserProduct {
+  userProdId    Int     @id @default(autoincrement())
+  User          User    @relation(fields: [userUserId], references: [userId])
+  Product       Product @relation(fields: [productProdId], references: [prodId])
+  userUserId    Int
+  productProdId Int
 }
 
 model ProductCart {
@@ -39,6 +48,7 @@ model Product {
   brand       Brand         @relation(fields: [brandId], references: [brandId])
   brandId     Int
   ProductCart ProductCart[]
+  UserProduct UserProduct[]
 }
 
 model Brand {

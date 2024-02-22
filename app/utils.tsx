@@ -11,6 +11,11 @@ const formatDate = (fullDate?: string) => {
   return { date, hour: dateToFormat[4] };
 };
 
+const searchBarPage = (path: string) => {
+  if (paths[path.split("/")[1]] == "no") return false;
+  return true;
+};
+
 const months: { [key: string]: string } = {
   Jan: "01",
   Feb: "02",
@@ -26,4 +31,9 @@ const months: { [key: string]: string } = {
   Dec: "12",
 };
 
-export { formatDate };
+const paths: { [key: string]: string } = {
+  profile: "no",
+  login: "no",
+  default: "yes",
+};
+export { formatDate, searchBarPage };

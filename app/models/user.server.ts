@@ -14,13 +14,13 @@ export async function getUserByEmail(email: string) {
 
 export async function createUser({ name, email, password }: RegisterUser) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const {date, hour} = formatDate()
+  const { date, hour } = formatDate();
   const user = {
     name: name,
     email: email,
     password: hashedPassword,
     createdAt: `${date} ${hour}`,
-    updatedAt: `${date} ${hour}`
+    updatedAt: `${date} ${hour}`,
   };
 
   return prisma.user.create({
@@ -60,8 +60,25 @@ export async function addProductToCart(
 }
 
 export async function getUserById(userId: number) {
-  const user = await prisma.user.findUnique({ where: { userId } })
-  if(user != null)
-    return user;
+  const user = await prisma.user.findUnique({ where: { userId } });
+  if (user != null) return user;
   return null;
+}
+
+export async function getUserProducts(userId: number) {
+  const userProduct = await prisma.userProduct.findMany({
+    where: { userUserId: userId },
+  });
+  if (!userProduct) {
+    return null;
+  }
+  let prod = [];
+  //since we are putting arrays in a array we have to push only the obj. and not the array
+  for (var val of userProduct) {
+    let valor = await prisma.product.findMany({
+      where: { prodId: val.productProdId },
+    });
+    prod.push(valor[0]);
+  }
+  return prod;
 }

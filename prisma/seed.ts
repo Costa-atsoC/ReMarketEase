@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { formatDate } from "~/utils";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const { date, hour } = formatDate()
+  const { date, hour } = formatDate();
   // Create brands
   const brand1 = await prisma.brand.create({
     data: {
@@ -94,7 +95,7 @@ async function main() {
       createdAt: `${date} ${hour}`,
       updatedAt: `${date} ${hour}`,
       email: "john@example.com",
-      password: "password123",
+      password: await bcrypt.hash("123", 10),
       cart: {
         create: [
           { quantity: 2, prodId: product1.prodId },
@@ -104,9 +105,60 @@ async function main() {
     },
   });
 
-  // Add more data as needed
+  const user2 = await prisma.user.create({
+    data: {
+      name: "John Doe",
+      createdAt: `${date} ${hour}`,
+      updatedAt: `${date} ${hour}`,
+      email: "test@example.com",
+      password: await bcrypt.hash("123", 10),
+      cart: {
+        create: [
+          { quantity: 2, prodId: product1.prodId },
+          { quantity: 1, prodId: product2.prodId },
+        ],
+      },
+    },
+  });
 
-  console.log("Seed data inserted successfully");
+  const user3 = await prisma.user.create({
+    data: {
+      name: "Gonçalo Costa",
+      createdAt: `${date} ${hour}`,
+      updatedAt: `${date} ${hour}`,
+      email: "john@example.com",
+      password: await bcrypt.hash("123", 10),
+      cart: {
+        create: [
+          { quantity: 2, prodId: product1.prodId },
+          { quantity: 1, prodId: product2.prodId },
+        ],
+      },
+    },
+  });
+
+  const userProduct1 = await prisma.userProduct.create({
+    data: {
+      userUserId: 3,
+      productProdId: 1,
+    },
+  });
+
+  const userProduct2 = await prisma.userProduct.create({
+    data: {
+      userUserId: 3,
+      productProdId: 2,
+    },
+  });
+
+  const userProduct3 = await prisma.userProduct.create({
+    data: {
+      userUserId: 3,
+      productProdId: 3,
+    },
+  });
+
+  console.log("Database has been seeded. 🌱");
 }
 
 main()

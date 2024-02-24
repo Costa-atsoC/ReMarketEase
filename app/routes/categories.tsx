@@ -16,7 +16,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Categories() {
   return (
     <Header>
-      <Outlet />
+      <div className="mx-auto w-full max-w-screen-xl">
+        <Outlet />
+      </div>
     </Header>
   );
 }

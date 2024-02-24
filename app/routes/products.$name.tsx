@@ -49,11 +49,11 @@ export default function Postid() {
     <div className="sm:px-10 md:px-10 lg:px-24 xl:px-24 py-8">
       {product && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-          <div className="relative">
+          <div className="relative ">
             <img
               src={product.photo}
               alt={product.name}
-              className="sticky top-0 z-50 pt-6"
+              className="sticky object-cover top-0 z-50 pt-6 aspect-square"
             />
           </div>
           <div className="px-4 flex flex-col md:items-start">

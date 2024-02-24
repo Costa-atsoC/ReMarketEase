@@ -18,7 +18,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function categoryName() {
   const { products, category } = useLoaderData<typeof loader>();
   return (
-    <div className="px-24 py-4">
+    <div className="pt-18">
       {category && (
         <div>
           <span className="text-2xl font-bold text-gray-800 pb-1 dark:text-white">

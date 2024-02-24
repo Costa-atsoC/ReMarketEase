@@ -52,7 +52,7 @@ export default function Index() {
             className="object-cover object-center w-full h-96 rounded-md"
           />
         </div>
-        <div className="px-24">
+        <div className="mx-auto w-full max-w-screen-xl">
           <div className="py-4 pb-6">
             <Link to="/categories/all">
               <span className="text-2xl font-black underline-offset-8 underline hover:decoration-blue-400 text-gray-800 pb-1 dark:text-white uppercase cursor-pointer">
@@ -61,7 +61,7 @@ export default function Index() {
             </Link>
           </div>
 
-          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {catMore.map((category) => (
               <Link
                 to={`/categories/${category.catId}`}

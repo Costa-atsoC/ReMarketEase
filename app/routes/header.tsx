@@ -13,32 +13,33 @@ const Header: React.FC<LayoutProps> = ({ children }) => {
   const page = searchBarPage(location.pathname);
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="mx-4 mb-4 mt-2 flex flex-col flex-grow">
-        <header className="flex justify-between items-center p-6 bg-slate-100 dark:bg-slate-900 rounded-lg">
-          <div>
-            <Link to="/">
-              <p className="transition ease-in duration-300 text-gray-800 rounded-sm dark:text-blue-500  pr-6 pl-1 mr-2 py-0 hover:scale-110 text-xl font-black">
-                R<span className="text-xl">E</span>M
-                <span className="text-xl">ARKET</span>E
-                <span className="text-xl">ASE</span>
-              </p>
-            </Link>
-          </div>
-          {/* Right side  */}
-          <nav className="flex items-center flex-row">
-            {!data.loggedIn ? (
-              <div>
-                <Link
-                  to="/login"
-                  className="ease-in duration-300 dark:text-white rounded-sm dark:hover:text-blue-400 underline dark:decoration-blue-100 decoration-blue-500 underline-offset-8 text-md font-black uppercase mr-4"
-                >
-                  <span className="">Sign In or Register</span>
-                </Link>
-              </div>
-            ) : (
-              // User logged in part
-              <div>
-                {/* <button
+      <div className="mx-4 mb-4 mt-2 flex flex-col flex-grow ">
+        <header className="p-6 bg-slate-100 dark:bg-slate-900 rounded-lg">
+          <div className="mx-auto w-full max-w-screen-xl flex justify-between items-center ">
+            <div>
+              <Link to="/">
+                <p className="transition ease-in duration-300 text-gray-800 rounded-sm dark:text-blue-500  pr-6 pl-1 mr-2 py-0 hover:scale-110 text-xl font-black">
+                  R<span className="text-xl">E</span>M
+                  <span className="text-xl">ARKET</span>E
+                  <span className="text-xl">ASE</span>
+                </p>
+              </Link>
+            </div>
+            {/* Right side  */}
+            <nav className="flex items-center flex-row">
+              {!data.loggedIn ? (
+                <div>
+                  <Link
+                    to="/login"
+                    className="ease-in duration-300 dark:text-white rounded-sm dark:hover:text-blue-400 underline dark:decoration-blue-100 decoration-blue-500 underline-offset-8 text-md font-black uppercase mr-4"
+                  >
+                    <span className="">Sign In or Register</span>
+                  </Link>
+                </div>
+              ) : (
+                // User logged in part
+                <div>
+                  {/* <button
                   type="button"
                   className="relative inline-flex items-center text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-4"
                 >
@@ -57,11 +58,12 @@ const Header: React.FC<LayoutProps> = ({ children }) => {
                     20
                   </div>
                 </button> */}
-                <Dropdown />
-              </div>
-            )}
-            <Switcher />
-          </nav>
+                  <Dropdown />
+                </div>
+              )}
+              <Switcher />
+            </nav>
+          </div>
         </header>
 
         {/* Search Bar */}

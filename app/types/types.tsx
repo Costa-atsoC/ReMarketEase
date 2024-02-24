@@ -5,7 +5,7 @@ interface AlertProps {
   message: string;
   type: string;
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface LayoutProps {
@@ -30,9 +30,13 @@ enum FormNames {
   REGISTER_FORM = "register",
 }
 
-interface HeaderProps {
+type HeaderProps = {
   loggedIn: boolean;
   user?: User;
+}
+
+interface dropdown {
+  data: HeaderProps
 }
 
 export type {
@@ -42,6 +46,7 @@ export type {
   RegisterUser,
   returnValue,
   HeaderProps,
+  dropdown
 };
 
 export { FormNames }; //Because we are exporting the enum FormNames, we can use it in other files

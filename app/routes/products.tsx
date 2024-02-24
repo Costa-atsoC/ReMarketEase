@@ -1,6 +1,6 @@
 import { Outlet } from "@remix-run/react";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
-import Header from "~/components/header";
+import Header from "~/routes/header";
 import { getSession } from "~/sessions";
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -10,12 +10,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return json({ loggedIn: true, user: session.data });
   }
   return json({ loggedIn: false, user: session.data });
-};
+}
 
-export default function Products(){
+export default function Products() {
   return (
     <Header>
       <Outlet />
     </Header>
-  )
+  );
 }

@@ -14,8 +14,6 @@ export default function Switcher(): JSX.Element {
   };
 
   return (
-    <>
       <DarkModeSwitch checked={darkSide} onChange={toggleDarkMode} size={30} />
-    </>
   );
 }

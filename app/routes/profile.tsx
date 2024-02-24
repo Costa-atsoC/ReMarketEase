@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
-import Header from "~/components/header";
+import Header from "~/routes/header";
 import { getSession } from "~/sessions";
 
 export async function loader({ request }: LoaderFunctionArgs) {

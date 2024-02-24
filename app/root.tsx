@@ -1,5 +1,6 @@
 import type { LinksFunction } from "@remix-run/node";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -22,10 +23,18 @@ export function ErrorBoundary() {
         <Meta />
         <Links />
       </head>
-      <body className="flex flex-col py-40">
+      <body className="flex flex-col py-40 bg-red-300">
         <center>
           <h1>Ups that was not supposed to happen!</h1>
           <p>{(error as any).message}</p>
+          <p>
+            <Link
+              to="/"
+              className="border-2 border-rose-800 bg-slate-600 hover:bg-slate-800 text-yellow-50"
+            >
+              Go back home
+            </Link>
+          </p>
         </center>
         <Scripts />
       </body>
@@ -42,7 +51,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-primary">
+      <body>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

@@ -16,7 +16,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function userProfile() {
   const { user, products } = useLoaderData<typeof loader>();
   const date = user.createdAt.split(" "); //We only want the date not the hour
-  console.log(products);
   return (
     <div className=" lg:px-4 max-w-screen-xl mx-auto w-full">
       <div className="dark:text-white text-2xl font-black lg:pb-5">
@@ -33,7 +32,7 @@ export default function userProfile() {
               <Link
                 to={`/products/${prod.prodId}`}
                 key={prod.prodId}
-                className="rounded overflow-hidden shadow shadow-lg h-full hover:shadow-2xl "
+                className="rounded overflow-hidden shadow shadow-lg h-full hover:shadow-2xl"
               >
                 <img
                   className="object-cover h-52 w-full"

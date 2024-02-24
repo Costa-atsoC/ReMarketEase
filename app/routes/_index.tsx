@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node";
 import { useLoaderData, Link, Form } from "@remix-run/react";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 
-import Header from "~/components/header";
+import Header from "~/routes/header";
 import { getCategories } from "~/models/category.server";
 import { destroySession, getSession } from "~/sessions";
 
@@ -30,15 +30,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     loggedIn: false,
     categories: await getCategories(),
     user: session.data,
-  });
-};
-
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const session = await getSession(request.headers.get("Cookie"));
-  return redirect("/login", {
-    headers: {
-      "Set-Cookie": await destroySession(session),
-    },
   });
 };
 
@@ -104,13 +95,6 @@ export default function Index() {
           </div>
           <br />
         </div>
-        {data.loggedIn ? (
-          <div>
-            <Form method="post">
-              <button>Logout</button>
-            </Form>
-          </div>
-        ) : null}
       </Header>
     </div>
   );

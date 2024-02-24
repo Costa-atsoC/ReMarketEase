@@ -5,9 +5,9 @@ import {
   useNavigation,
 } from "@remix-run/react";
 import type { ActionFunction } from "@remix-run/node";
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 
-import Header from "~/components/header";
+import Header from "~/routes/header";
 import Alert from "~/components/alert";
 import type { returnValue } from "~/types/types";
 import { FormNames } from "~/types/types";
@@ -112,10 +112,18 @@ const showMessage = (data: returnValue) => {
   return (
     <div className="flex justify-end mr-5">
       {data && data.error ? (
-        <Alert open={open} setOpen={setOpen} {...{ message: data.error, type: "error" }} />
+        <Alert
+          open={open}
+          setOpen={setOpen}
+          {...{ message: data.error, type: "error" }}
+        />
       ) : null}
       {data && data.success ? (
-        <Alert open={open} setOpen={setOpen} {...{ message: data.success, type: "success" }} />
+        <Alert
+          open={open}
+          setOpen={setOpen}
+          {...{ message: data.success, type: "success" }}
+        />
       ) : null}
     </div>
   );
